@@ -294,7 +294,7 @@ augroup VCSCommandCommit
 augroup END
 
 " Section: Plugin initialization {{{1
-silent do VCSCommand User VCSPluginInit
+doautocmd User VCSPluginInit
 
 " Section: Constants declaration {{{1
 
@@ -498,7 +498,7 @@ function! s:SetupBuffer()
 	try
 		let vcsType = VCSCommandGetVCSType(bufnr('%'))
 		let b:VCSCommandBufferInfo = s:plugins[vcsType][1].GetBufferInfo()
-		silent do VCSCommand User VCSBufferSetup
+		doautocmd User VCSBufferSetup
 	catch /No suitable plugin/
 		" This is not a VCS-controlled file.
 		let b:VCSCommandBufferInfo = []
@@ -827,7 +827,7 @@ function! s:VCSVimDiff(...)
 			let saveModeline = getbufvar(currentBuffer, '&modeline')
 			try
 				call setbufvar(currentBuffer, '&modeline', 0)
-				silent do VCSCommand User VCSVimDiffFinish
+				doautocmd User VCSVimDiffFinish
 			finally
 				call setbufvar(currentBuffer, '&modeline', saveModeline)
 			endtry
@@ -1028,7 +1028,7 @@ function! VCSCommandDoCommand(cmd, cmdName, statusText, options)
 
 	" Define the environment and execute user-defined hooks.
 
-	silent do VCSCommand User VCSBufferCreated
+	doautocmd User VCSBufferCreated
 	return bufnr('%')
 endfunction
 
@@ -1250,6 +1250,6 @@ augroup END
 
 let loaded_VCSCommand = 2
 
-silent do VCSCommand User VCSPluginFinish
+doautocmd User VCSPluginFinish
 
 let &cpo = s:save_cpo
