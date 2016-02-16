@@ -1,3 +1,3 @@
 setlocal readonly
-setlocal nomodifiable
+" setlocal nomodifiable
 
