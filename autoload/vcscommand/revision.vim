@@ -11,7 +11,7 @@ function! vcscommand#revision#get_line(line_number)
     if line =~ '^revision'
         return substitute(line, "^revision ", "", "")
     elseif line =~ '^[0-9.]\+ '
-        return substitute( line, ' .*'', '', '')
+        return substitute( line, ' .*', '', '')
     else
         return ''
     endif
