@@ -1,3 +1,6 @@
+setlocal readonly
+setlocal nomodifiable
+
 function! s:search_revision( direction )
     let flags = 'W'
     if a:direction == 'reverse'
