@@ -25,6 +25,10 @@ function! vcscommand#revision#get_line(line_number)
     elseif line =~ '^r[0-9]\+ \| [0-9-] .* [0-9]\+ lines$'
         let first =  substitute( line, ' | .*', '', '')
         return substitute( first, '^[ ]*r', '', '')
+    elseif &filetype ==  'SVNAnnotate'
+        let trimmed  =  substitute( line, '^     ', '', '')
+        echom "trimmed " . trimmed
+        return substitute( trimmed, '[ ].*', '', '')
     else
         return ''
     endif
