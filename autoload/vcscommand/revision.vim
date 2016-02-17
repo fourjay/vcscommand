@@ -4,7 +4,7 @@ function! vcscommand#revision#math(revision, interval)
     if a:revision =~ '^[0-9]\+$'
         return a:revision + a:interval
     " if it's a dotted revision, separate out the parts
-    elseif a:revision =~ '^[0-9]\+[0-9]\+$'
+    elseif a:revision =~ '^[0-9]\+\.[0-9]\+$'
         let parts = split( a:revision, '\.')
         let minor = parts[1]
         let minor += a:interval
@@ -54,5 +54,6 @@ function! vcscommand#revision#diff_prior()
     let prior = vcscommand#revision#math(revision, -1)
     " close the log/blame window
     normal q
+    echom 'VCSVimDiff ' .  revision . ' ' . prior
     execute 'VCSVimDiff ' .  revision . ' ' . prior
 endfunction
