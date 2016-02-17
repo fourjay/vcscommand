@@ -52,7 +52,9 @@ function! vcscommand#revision#diff_prior()
         return
     endif
     let prior = vcscommand#revision#math(revision, -1)
-    " close the log/blame window
-    normal q
+    " close the log/blame window when multi version split
+    if prior
+        normal q
+    endif
     execute 'VCSVimDiff ' .  revision . ' ' . prior
 endfunction
