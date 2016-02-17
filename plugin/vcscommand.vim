@@ -1037,6 +1037,12 @@ function! VCSCommandDoCommand(cmd, cmdName, statusText, options)
         if exists('#User#VCSBufferCreated')
             doautocmd User VCSBufferCreated
         endif
+        if
+                    \    a:cmd =~ 'log'
+                    \ || a:cmd =~ 'blame'
+                    \ || a:cmd =~ 'annotate'
+            setlocal nomodifiable
+        endif
 	return bufnr('%')
 endfunction
 
