@@ -54,6 +54,5 @@ function! vcscommand#revision#diff_prior()
     let prior = vcscommand#revision#math(revision, -1)
     " close the log/blame window
     normal q
-    echom 'VCSVimDiff ' .  revision . ' ' . prior
     execute 'VCSVimDiff ' .  revision . ' ' . prior
 endfunction
